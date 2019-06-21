@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body{
+            background-color: grey;
+
+        }
+        h1{
+            color: black;
+
+        }
+    
+    </style>
+
+    <h1>
+        Budget Calculator
+    </h1>
+
+    <p>
+        This is a test, do not use the results without further verification
+    </p>
+    <br/>
+
+    <!--Budget should be slightly different stylistically-->
+    <h2>
+        Budget is:&#160$
+        <input type ="text", id="Budget", value="5000"> <br/>
+    </h2>
+
+ 
+    <p>
+        Broken Arm:&#160 	
+        <input type ="text", id="BrokenArm" > 
+        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenArmRange"> <br/>
+    </p>
+
+  
+<div>
+    <p>
+        Broken Leg:&#160 
+        <input type ="text", id="BrokenLeg">
+        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenLegRange"> <br/>
+    </p>
+     
+
+     <p>
+        Broken Head:&#160 
+        <input type ="text", id="BrokenHead:">
+    </p>
+   
+
+     <p>
+        Mystery Object in Abdomen:&#160 
+        <input type ="text", id="BrokenButt:">
+    </p>
+    <br/>
+
+
+
+    <button onclick="BudgetCalc()">Run</button>
+    
+    
+</div>
+
+<script>
+   
+ BrokenArmcost = 15;
+ BrokenLegcost = 20;
+
+    document.getElementById("Budget").oninput = function MaxRanges(){
+        var Budget = document.getElementById("Budget").value;
+        document.getElementById("BrokenArmRange").max = (Budget/BrokenArmcost);
+        document.getElementById("BrokenLegRange").max = (Budget/BrokenLegcost);
+
+        }
+
+
+    
+
+
+//gets budget number from box and outputs it  
+        function BudgetCalc(){
+        var Budget = document.getElementById("Budget").value;
+
+         window.alert(Budget);
+        }
+
+
+    document.getElementById("BrokenArmRange").oninput = function hi() {
+        var Budget = document.getElementById("Budget").value;
+
+
+        document.getElementById("BrokenArm").value = document.getElementById("BrokenArmRange").value;
+        
+        
+        document.getElementById("BrokenLeg").value = (Budget-(BrokenArmcost*document.getElementById("BrokenArm").value))/BrokenLegcost;
+        document.getElementById("BrokenLegRange").value = document.getElementById("BrokenLeg").value
+        
+
+        //document.getElementById("BrokenLeg").value = document.getElementById("BrokenLegRange").value;
+        // document.getElementById("BrokenLegRange").max = (Budget/BrokenLegCost);
+        }
+
+    document.getElementById("BrokenLegRange").oninput = function() {
+        document.getElementById("BrokenLeg").value = document.getElementById("BrokenLegRange").value;
+        }
+
+
+    function brokenArmCalc(){
+
+        return 1
+    }
+
+</script>
+<!--for loading figure out how to load things properly <body onload="MaxRanges()"></body>-->
+
+
+
+
+</html>
