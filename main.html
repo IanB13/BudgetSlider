@@ -31,7 +31,7 @@
     <p>
         Broken Arm:&#160 	
         <input type ="text", id="BrokenArm" > 
-        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenArmRange"> <br/>
+        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenArmRange" > <br/>
     </p>
 
   
@@ -87,7 +87,7 @@
             MaxRanges();
         }
 
-
+        // operates broken arm slider
         document.getElementById("BrokenArmRange").oninput = function hi() {
             var Budget = document.getElementById("Budget").value;
 
@@ -96,20 +96,49 @@
 
 
             document.getElementById("BrokenLeg").value = (Budget - (BrokenArmcost * document.getElementById("BrokenArm").value)) / BrokenLegcost;
-            document.getElementById("BrokenLegRange").value = document.getElementById("BrokenLeg").value
+            document.getElementById("BrokenLegRange").value = document.getElementById("BrokenLeg").value;
 
 
             //document.getElementById("BrokenLeg").value = document.getElementById("BrokenLegRange").value;
             // document.getElementById("BrokenLegRange").max = (Budget/BrokenLegCost);
         }
 
-        function SliderOps(SlidingElement){
+        //WORKING ON NOW = MOST IMPORTANT FUNCTION
+        function SliderOps(SlidingElement,SlidingElementRange){
+            //sets budget
             var Budget = document.getElementById("Budget").value;
+            
+            SlidingElement.value = SlidingElementRange.value;
+            
+            var sliderlist = document.getElementsByClassName("slider");
+            var i = sliderlist.length;
+            
 
-            document.getElementById(SlidingElement).value = document.getElementById(SlidingElement).value;
+            var aslider =sliderlist[0].value;
+                while(i > 0){
+                    if(sliderlist[i-1].id != SlidingElementRange.id ){
+                        
+                        
+                      //  console.log(sliderlist[i-1].id);
+                       // console.log(SlidingElementRange.id)
+                    }
+                  
+                    i--;
+                }
+
+            document.getElementById("testoutput").innerHTML = sliderlist.length;
+            
+
 
         }
+        document.getElementById("BrokenLegRange").oninput = function foo(){
+            
+            x= document.getElementById("BrokenLeg");
+            y = document.getElementById("BrokenLegRange");
+            SliderOps(x,y);
 
+
+        }
 
 
 
@@ -120,11 +149,15 @@
 function BudgetCalc(){
         var Budget = document.getElementById("Budget").value;
 
+        x= document.getElementById("BrokenLeg");
+            y = document.getElementById("BrokenLegRange");
+            SliderOps(x,y);
+
          window.alert(Budget);
         }
 
 </script>
-
+<p id="testoutput"></p>
 
 
 
