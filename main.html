@@ -27,7 +27,7 @@
         <input type ="text", id="Budget", value="5000"> <br/>
     </h2>
 
- 
+ <div>
     <p>
         Broken Arm:&#160 	
         <input type ="text", id="BrokenArm" > 
@@ -35,7 +35,7 @@
     </p>
 
   
-<div>
+
     <p>
         Broken Leg:&#160 
         <input type ="text", id="BrokenLeg">
@@ -46,12 +46,14 @@
      <p>
         Broken Head:&#160 
         <input type ="text", id="BrokenHead:">
+        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenHeadRange"> <br/>
     </p>
    
 
      <p>
         Mystery Object in Abdomen:&#160 
         <input type ="text", id="BrokenButt:">
+        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenButtRange" > <br/>
     </p>
     <br/>
 
@@ -63,56 +65,65 @@
 </div>
 
 <script>
-   
+// sets global variables for broken stuff
  BrokenArmcost = 15;
  BrokenLegcost = 20;
+ 
 
-    document.getElementById("Budget").oninput = function MaxRanges(){
+//sets slider ranges to appropriate values
+   // document.getElementById("Budget").oninput = function MaxRanges(){
+         function MaxRanges(){
         var Budget = document.getElementById("Budget").value;
         document.getElementById("BrokenArmRange").max = (Budget/BrokenArmcost);
         document.getElementById("BrokenLegRange").max = (Budget/BrokenLegcost);
 
         }
+    //runs maxrange on input
+    document.getElementById("Budget").oninput = function MaxRanges1(){
+            MaxRanges()
+        }
+    //runs maxrange on load
+    window.onload = function MaxRanges2(){
+            MaxRanges();
+        }
 
 
-    
+        document.getElementById("BrokenArmRange").oninput = function hi() {
+            var Budget = document.getElementById("Budget").value;
 
 
-//gets budget number from box and outputs it  
-        function BudgetCalc(){
+            document.getElementById("BrokenArm").value = document.getElementById("BrokenArmRange").value;
+
+
+            document.getElementById("BrokenLeg").value = (Budget - (BrokenArmcost * document.getElementById("BrokenArm").value)) / BrokenLegcost;
+            document.getElementById("BrokenLegRange").value = document.getElementById("BrokenLeg").value
+
+
+            //document.getElementById("BrokenLeg").value = document.getElementById("BrokenLegRange").value;
+            // document.getElementById("BrokenLegRange").max = (Budget/BrokenLegCost);
+        }
+
+        function SliderOps(SlidingElement){
+            var Budget = document.getElementById("Budget").value;
+
+            document.getElementById(SlidingElement).value = document.getElementById(SlidingElement).value;
+
+        }
+
+
+
+
+
+
+
+//gets budget number from budget input box and outputs it as an windows alert  (test code)
+function BudgetCalc(){
         var Budget = document.getElementById("Budget").value;
 
          window.alert(Budget);
         }
 
-
-    document.getElementById("BrokenArmRange").oninput = function hi() {
-        var Budget = document.getElementById("Budget").value;
-
-
-        document.getElementById("BrokenArm").value = document.getElementById("BrokenArmRange").value;
-        
-        
-        document.getElementById("BrokenLeg").value = (Budget-(BrokenArmcost*document.getElementById("BrokenArm").value))/BrokenLegcost;
-        document.getElementById("BrokenLegRange").value = document.getElementById("BrokenLeg").value
-        
-
-        //document.getElementById("BrokenLeg").value = document.getElementById("BrokenLegRange").value;
-        // document.getElementById("BrokenLegRange").max = (Budget/BrokenLegCost);
-        }
-
-    document.getElementById("BrokenLegRange").oninput = function() {
-        document.getElementById("BrokenLeg").value = document.getElementById("BrokenLegRange").value;
-        }
-
-
-    function brokenArmCalc(){
-
-        return 1
-    }
-
 </script>
-<!--for loading figure out how to load things properly <body onload="MaxRanges()"></body>-->
 
 
 
