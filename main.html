@@ -1,164 +1,227 @@
 <!DOCTYPE html>
 <html>
-    <style>
-        body{
-            background-color: grey;
+<style>
+    body {
+        background-color: grey;
 
-        }
-        h1{
-            color: black;
+    }
 
-        }
-    
-    </style>
+    h1 {
+        color: black;
 
-    <h1>
-        Budget Calculator
-    </h1>
+    }
+</style>
+
+<h1>
+    Budget Calculator
+</h1>
+
+<p>
+    This is a test, do not use the results without further verification
+</p>
+<br />
+
+<!--Budget should be slightly different stylistically-->
+<h2>
+    Budget is:&#160$
+    <input type="text" , id="Budget" , value="5000"> <br />
+</h2>
+
+<div>
+    <p>
+        Broken Arm:&#160$
+        <input type="text" , id="BrokenArmCost" value="10" class="cost">
+        &#160x&#160
+        <input type="text" , id="BrokenArm" class="quantity">
+        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenArmRange" > 
+        <input type="checkbox"  class="lockbutton" id="41234123">
+    </p>
+
+
 
     <p>
-        This is a test, do not use the results without further verification
-    </p>
-    <br/>
-
-    <!--Budget should be slightly different stylistically-->
-    <h2>
-        Budget is:&#160$
-        <input type ="text", id="Budget", value="5000"> <br/>
-    </h2>
-
- <div>
-    <p>
-        Broken Arm:&#160 	
-        <input type ="text", id="BrokenArm" > 
-        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenArmRange" > <br/>
+        Broken Leg:&#160$
+        <input type="text" , id="BrokenLegCost" value="20" class="cost">
+        &#160x&#160
+        <input type="text" , id="BrokenLeg" class="quantity">
+        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenLegRange"> 
+        <input type="checkbox" class="lockbutton" value="102839102">
     </p>
 
-  
 
     <p>
-        Broken Leg:&#160 
-        <input type ="text", id="BrokenLeg">
-        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenLegRange"> <br/>
+        Broken Head:&#160$
+        <input type="text" , id="BrokenHeadCost" value="30" class="cost">
+        &#160x&#160
+        <input type="text" , id="BrokenHead" class="quantity">
+        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenHeadRange"> 
+        <input type="checkbox"  class="lockbutton">
     </p>
-     
 
-     <p>
-        Broken Head:&#160 
-        <input type ="text", id="BrokenHead:">
-        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenHeadRange"> <br/>
-    </p>
-   
 
-     <p>
-        Mystery Object in Abdomen:&#160 
-        <input type ="text", id="BrokenButt:">
-        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenButtRange" > <br/>
+    <p>
+        Mystery Object in Abdomen:&#160
+        <input type="text" , id="BrokenButtCost" value="40" class="cost">
+        &#160x&#160
+        <input type="text" , id="BrokenButt" class="quantity">
+        <input type="range" min="0" max="100" value="50" class="slider" id="BrokenButtRange"> 
+        <input type="checkbox"  class="lockbutton">
     </p>
-    <br/>
+    <br />
 
 
 
     <button onclick="BudgetCalc()">Run</button>
-    
-    
+
+
 </div>
 
 <script>
-// sets global variables for broken stuff
- BrokenArmcost = 15;
- BrokenLegcost = 20;
- 
+    // sets global variables for broken stuff, will not change on input TO DO
+    BrokenArmcost = document.getElementById("BrokenArmCost").value;
+    BrokenLegcost = document.getElementById("BrokenLegCost").value;
+    BrokenHeadcost = document.getElementById("BrokenHeadCost").value;
+    BrokenButtcost = document.getElementById("BrokenButtCost").value;
 
-//sets slider ranges to appropriate values
-   // document.getElementById("Budget").oninput = function MaxRanges(){
-         function MaxRanges(){
+
+    // MaxRanges Function sets slider ranges to appropriate values based on budget max
+    function MaxRanges() {
         var Budget = document.getElementById("Budget").value;
-        document.getElementById("BrokenArmRange").max = (Budget/BrokenArmcost);
-        document.getElementById("BrokenLegRange").max = (Budget/BrokenLegcost);
+        document.getElementById("BrokenArmRange").max = (Budget / BrokenArmcost);
+        document.getElementById("BrokenLegRange").max = (Budget / BrokenLegcost);
+        document.getElementById("BrokenHeadRange").max = (Budget / BrokenHeadcost);
+        document.getElementById("BrokenButtRange").max = (Budget / BrokenButtcost);
 
-        }
+    }
     //runs maxrange on input
-    document.getElementById("Budget").oninput = function MaxRanges1(){
-            MaxRanges()
-        }
+    document.getElementById("Budget").oninput = function MaxRanges1() {
+        MaxRanges()
+    }
     //runs maxrange on load
-    window.onload = function MaxRanges2(){
-            MaxRanges();
-        }
+    window.onload = function MaxRanges2() {
+        MaxRanges();
+    }
 
-        // operates broken arm slider
-        document.getElementById("BrokenArmRange").oninput = function hi() {
-            var Budget = document.getElementById("Budget").value;
-
-
-            document.getElementById("BrokenArm").value = document.getElementById("BrokenArmRange").value;
-
-
-            document.getElementById("BrokenLeg").value = (Budget - (BrokenArmcost * document.getElementById("BrokenArm").value)) / BrokenLegcost;
-            document.getElementById("BrokenLegRange").value = document.getElementById("BrokenLeg").value;
-
-
-            //document.getElementById("BrokenLeg").value = document.getElementById("BrokenLegRange").value;
-            // document.getElementById("BrokenLegRange").max = (Budget/BrokenLegCost);
-        }
-
-        //WORKING ON NOW = MOST IMPORTANT FUNCTION
-        function SliderOps(SlidingElement,SlidingElementRange){
-            //sets budget
-            var Budget = document.getElementById("Budget").value;
-            
-            SlidingElement.value = SlidingElementRange.value;
-            
-            var sliderlist = document.getElementsByClassName("slider");
-            var i = sliderlist.length;
-            
-
-            var aslider =sliderlist[0].value;
-                while(i > 0){
-                    if(sliderlist[i-1].id != SlidingElementRange.id ){
-                        
-                        
-                      //  console.log(sliderlist[i-1].id);
-                       // console.log(SlidingElementRange.id)
-                    }
-                  
-                    i--;
-                }
-
-            document.getElementById("testoutput").innerHTML = sliderlist.length;
-            
-
-
-        }
-        document.getElementById("BrokenLegRange").oninput = function foo(){
-            
-            x= document.getElementById("BrokenLeg");
-            y = document.getElementById("BrokenLegRange");
-            SliderOps(x,y);
-
-
-        }
-
-
-
-
-
-
-//gets budget number from budget input box and outputs it as an windows alert  (test code)
-function BudgetCalc(){
+/*     // operates broken arm slider
+    document.getElementById("BrokenArmRange").oninput = function hi() {
         var Budget = document.getElementById("Budget").value;
 
-        x= document.getElementById("BrokenLeg");
-            y = document.getElementById("BrokenLegRange");
-            SliderOps(x,y);
 
-         window.alert(Budget);
+        document.getElementById("BrokenArm").value = document.getElementById("BrokenArmRange").value;
+
+
+        document.getElementById("BrokenLeg").value = (Budget - (BrokenArmcost * document.getElementById("BrokenArm").value)) / BrokenLegcost;
+        document.getElementById("BrokenLegRange").value = document.getElementById("BrokenLeg").value;
+
+
+        //document.getElementById("BrokenLeg").value = document.getElementById("BrokenLegRange").value;
+        // document.getElementById("BrokenLegRange").max = (Budget/BrokenLegCost);
+    } */
+
+    //WORKING ON NOW = MOST IMPORTANT FUNCTION
+    function SliderOps(SlidingElement, SlidingElementRange,SlidingElementCost) {
+        //sets budget
+        var Budget = document.getElementById("Budget").value;
+        var ChangedBudget = Budget - SlidingElementRange.value*SlidingElementCost.value;
+        SlidingElement.value = SlidingElementRange.value;
+
+        var sliderlist = document.getElementsByClassName("slider");
+        var costlist = document.getElementsByClassName("cost");
+        var quantitylist = document.getElementsByClassName("quantity");
+        var lockbuttonlist = document.getElementsByClassName("lockbutton");
+        var i = sliderlist.length;
+      var lockbuttonsOn =0;
+            while(i>0){
+            if(lockbuttonlist[i-1].checked == true){
+                lockbuttonsOn++;
+                ChangedBudget = ChangedBudget - (costlist[i-1].value*quantitylist[i-1].value);
+            }
+            i--
+        } 
+        i = sliderlist.length;
+       
+        //TO DO: werid way of indexing fix i values
+        
+        while (i > 0) {
+            if (sliderlist[i - 1].id != SlidingElementRange.id & lockbuttonlist[i-1].checked==true) {
+                //ChangedBudget = ChangedBudget - (costlist[i-1].value*quantitylist[i-1].value);
+            }
+            else if(sliderlist[i - 1].id != SlidingElementRange.id & lockbuttonlist[i-1].checked==false){
+                sliderlist[i-1].value = ChangedBudget/((sliderlist.length-1-lockbuttonsOn)*costlist[i-1].value);
+                quantitylist[i-1].value = sliderlist[i-1].value
+                
+                document.getElementById("testoutput").innerHTML = ChangedBudget;
+                // document.getElementById("testoutput1").innerHTML = SlidingElementRange.value;
+                //document.getElementById("testoutput2").innerHTML = costlist[0].value;
+                //document.getElementById("testoutput3").innerHTML = ChangedBudget/(3*costlist[i-1].value);
+                //console.log(costlist[i-1].value);
+
+                //  console.log(sliderlist[i-1].id);
+                // console.log(SlidingElementRange.id)
+            }
+
+            i--;
+        
+        
         }
+
+        //document.getElementById("testoutput").innerHTML = sliderlist.length;
+
+
+        document.getElementById("testoutput1").innerHTML =1;
+    }
+    //Runing slideroperations function on input of each slider, should clean up
+    document.getElementById("BrokenArmRange").oninput = function foo() {
+        
+        x = document.getElementById("BrokenArm");
+        y = document.getElementById("BrokenArmRange");
+        z = document.getElementById("BrokenArmCost");
+        SliderOps(x, y,z);
+    }
+    
+    document.getElementById("BrokenLegRange").oninput = function foo1() {
+
+        x = document.getElementById("BrokenLeg");
+        y = document.getElementById("BrokenLegRange");
+        z = document.getElementById("BrokenLegCost");
+        SliderOps(x, y, z);
+    }
+    
+    document.getElementById("BrokenHeadRange").oninput = function foo2() {
+
+        x = document.getElementById("BrokenHead");
+        y = document.getElementById("BrokenHeadRange");
+        z = document.getElementById("BrokenHeadCost");
+        SliderOps(x, y, z);
+    }
+    
+    document.getElementById("BrokenButtRange").oninput = function foo3() {
+
+        x = document.getElementById("BrokenButt");
+        y = document.getElementById("BrokenButtRange");
+        z = document.getElementById("BrokenButtCost");
+        SliderOps(x, y, z);
+    }
+
+
+
+    //gets budget number from budget input box and outputs it as an windows alert  (test code)
+    function BudgetCalc() {
+        var Budget = document.getElementById("Budget").value;
+
+        x = document.getElementById("BrokenLeg");
+        y = document.getElementById("BrokenLegRange");
+   
+
+        window.alert(document.getElementById("41234123").checked);
+    }
 
 </script>
-<p id="testoutput"></p>
 
-
+<!--TestOutputs-->
+ChangedBudget <p id="testoutput"></p> <br />
+ActualBudget <p id="testoutput1"></p><br />
+<p id="testoutput2"></p><br />
+<p id="testoutput3"></p><br />
 
 </html>
