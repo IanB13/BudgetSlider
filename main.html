@@ -77,6 +77,7 @@
 </div>
 
 <script>
+    
     // sets global variables for broken stuff, will not change on input TO DO
     BrokenArmcost = document.getElementById("BrokenArmCost").value;
     BrokenLegcost = document.getElementById("BrokenLegCost").value;
@@ -140,7 +141,7 @@
         } 
         i = sliderlist.length;
        
-        //TO DO: werid way of indexing fix i values
+        //TO DO: werid way of indexing fix i values, FOR EACH?
         
         while (i > 0) {
             if (sliderlist[i - 1].id != SlidingElementRange.id & lockbuttonlist[i-1].checked==true) {
@@ -151,7 +152,9 @@
                 quantitylist[i-1].value = sliderlist[i-1].value
                 
                 document.getElementById("testoutput").innerHTML = ChangedBudget;
-                // document.getElementById("testoutput1").innerHTML = SlidingElementRange.value;
+                var a = 0
+                
+
                 //document.getElementById("testoutput2").innerHTML = costlist[0].value;
                 //document.getElementById("testoutput3").innerHTML = ChangedBudget/(3*costlist[i-1].value);
                 //console.log(costlist[i-1].value);
@@ -159,16 +162,26 @@
                 //  console.log(sliderlist[i-1].id);
                 // console.log(SlidingElementRange.id)
             }
+            var effectivebudget = 0;
 
-            i--;
-        
-        
+
+
+
+                i--;
         }
+        
+        
+        //checks in budget
+        effectivebudget = sliderlist[0].value * costlist[0].value+sliderlist[1].value * costlist[1].value+sliderlist[2].value * costlist[2].value+sliderlist[3].value * costlist[3].value;
+            
 
-        //document.getElementById("testoutput").innerHTML = sliderlist.length;
+        
 
+        document.getElementById("testoutput1").innerHTML = effectivebudget;
+       
+        
 
-        document.getElementById("testoutput1").innerHTML =1;
+        
     }
     //Runing slideroperations function on input of each slider, should clean up
     document.getElementById("BrokenArmRange").oninput = function foo() {
