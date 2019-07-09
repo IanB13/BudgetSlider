@@ -17,7 +17,8 @@
 </h1>
 
 <p>
-    This is a test, do not use the results without further verification
+    This is a test, do not use the results without further verification 
+    Look into async operations, promises for better functionality
 </p>
 <br />
 
@@ -47,6 +48,7 @@
         <input type="text" , id="BrokenLeg" class="quantity" disabled>
         <input type="range" min="0" max="100" value="50" class="slider" id="BrokenLegRange" step="1">
         <input type="checkbox" class="lockbutton">
+        $<span id ="Leg1"></span>x<span id ="Leg2"></span>=<span id ="Leg3"></span>
         
     </p>
 
@@ -58,7 +60,7 @@
         <input type="text" , id="BrokenHead" class="quantity" disabled>
         <input type="range" min="0" max="100" value="50" class="slider" id="BrokenHeadRange" step="1">
         <input type="checkbox" class="lockbutton">
-        
+        $<span id ="Head1"></span>x<span id ="Head2"></span>=<span id ="Head3"></span>
     </p>
 
 
@@ -69,9 +71,10 @@
         <input type="text" , id="BrokenButt" class="quantity" disabled>
         <input type="range" min="0" max="100" value="50" class="slider" id="BrokenButtRange" step="1">
         <input type="checkbox" class="lockbutton">
+        $<span id ="Butt1"></span>x<span id ="Butt2"></span>=<span id ="Butt3"></span>
     </p>
     <br />
-
+    <h2 id=sum></h2>
 
 
     <button onclick="BudgetCalc()">Run</button>
@@ -213,10 +216,25 @@
         }
         //error checking
        // document.getElementById("testoutput1").innerHTML = effectivebudget;
+        //adds element stuff
         document.getElementById("Arm1").innerHTML = BrokenArmcost;
         document.getElementById("Arm2").innerHTML = document.getElementById("BrokenArmRange").value;
-        
         document.getElementById("Arm3").innerHTML = BrokenArmcost*document.getElementById("BrokenArmRange").value;
+
+        document.getElementById("Leg1").innerHTML = BrokenLegcost;
+        document.getElementById("Leg2").innerHTML = document.getElementById("BrokenLegRange").value;
+        document.getElementById("Leg3").innerHTML = BrokenLegcost*document.getElementById("BrokenLegRange").value;
+
+        document.getElementById("Head1").innerHTML = BrokenHeadcost;
+        document.getElementById("Head2").innerHTML = document.getElementById("BrokenHeadRange").value;
+        document.getElementById("Head3").innerHTML = BrokenHeadcost*document.getElementById("BrokenHeadRange").value;
+
+        document.getElementById("Butt1").innerHTML = BrokenButtcost;
+        document.getElementById("Butt2").innerHTML = document.getElementById("BrokenButtRange").value;
+        document.getElementById("Butt3").innerHTML = BrokenButtcost*document.getElementById("BrokenButtRange").value;
+
+        document.getElementById("sum").innerHTML = BrokenArmcost*document.getElementById("BrokenArmRange").value+BrokenLegcost*document.getElementById("BrokenLegRange").value+BrokenHeadcost*document.getElementById("BrokenHeadRange").value+BrokenButtcost*document.getElementById("BrokenButtRange").value;
+
     }
 
     //Runing slideroperations function on input of each slider, should clean up
