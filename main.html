@@ -7,9 +7,41 @@
     }
 
     h1 {
-        color: black;
+        color: pink;
+    }
+    /*boorowed from w3C schools */
+    
+    .slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 50%; /* Full-width */
+    height: 20px;  /*Specified height */
+    background: white; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+    }
+
+    .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: pink;
+    cursor: pointer;
+    }
+    h2{
+        color:pink;
 
     }
+
+    .quantity{
+        background-color: gray;
+        color: red;
+    }
+
 </style>
 
 <h1>
@@ -18,7 +50,6 @@
 
 <p>
     This is a test, do not use the results without further verification 
-    Look into async operations, promises for better functionality
 </p>
 <br />
 
@@ -29,7 +60,7 @@
 </h2>
 
 <div>
-    <p>
+    <p class="slidercontainer">
         Broken Arm:&#160$
         <input type="text" , id="BrokenArmCost" value="10" class="cost">
         &#160x&#160
@@ -41,7 +72,7 @@
 
 
 
-    <p>
+    <p class="slidercontainer">
         Broken Leg:&#160$
         <input type="text" , id="BrokenLegCost" value="20" class="cost">
         &#160x&#160
@@ -53,7 +84,7 @@
     </p>
 
 
-    <p>
+    <p class="slidercontainer">
         Broken Head:&#160$
         <input type="text" , id="BrokenHeadCost" value="30" class="cost">
         &#160x&#160
@@ -64,7 +95,7 @@
     </p>
 
 
-    <p>
+    <p class="slidercontainer"> 
         Mystery Object in Abdomen:&#160
         <input type="text" , id="BrokenButtCost" value="40" class="cost">
         &#160x&#160
