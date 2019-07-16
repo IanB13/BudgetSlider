@@ -17,3 +17,7 @@ Issues:
 
 
 Have max budget on load
+can mess up by clicking lock button on start
+Fast slide to the right can lead to overbudget
+
+
