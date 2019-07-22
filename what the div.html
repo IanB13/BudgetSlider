@@ -1,0 +1,69 @@
+<!-- div that I will use for idividual slider boxes-->
+<div class ="InputBox">
+    <div class ="InputBoxHeader">
+        <h2>Inputed Name</h2>
+    </div>
+    <div class ="Inputs">
+        <input type ="text" class = "InputCost">
+        <span>x $</span>
+        <input type ="text" class = "InputQuantity">
+        <span>=</span> <span class = "SingleOutput"> 5000 </span>
+        <input type ="checkbox" class ="LockButton">
+        <br>
+        <input type = "range" class = "BudgetSlider">
+    </div>
+</div>
+
+
+<p>
+    <button value="Click" onclick="SliderBoxGen()">Click</button>
+</p>
+
+
+<script>
+var no =1;
+    // function to generate indivual slider boxes
+function SliderBoxGen(){
+    // newInputBox is the root div for the tree
+    let newInputBox = document.createElement("div"); 
+    newInputBox.className ="InputBox"
+   
+    //creates Header Box
+    let newInputBoxHead = document.createElement("div");
+    newInputBoxHead.className ="InputBoxHead";
+    newInputBox.appendChild(newInputBoxHead);  
+   
+    //creates Header h2 
+    let header = document.createElement("h2");
+    header.textContent ="Inputed Name";
+    newInputBoxHead.appendChild(header);
+    
+    
+    //Creates <div class ="Inputs">
+    let newInputs = document.createElement("div");
+    newInputs.className = "Inputs";
+    newInputBox.appendChild(newInputs);
+
+    //Creates <input type ="text" class = "InputCost">
+    let InputCost = document.createElement("input");
+    InputCost.className = "InputCost"
+    InputCost.setAttribute("type","text");
+    newInputs.appendChild(InputCost);
+    
+    
+    let test = document.createTextNode("TEST");
+    newInputBox.appendChild(test);
+
+
+    let number = document.createTextNode(no);
+    newInputBox.appendChild(number);
+    no++;
+
+
+
+    document.body.appendChild(newInputBox); 
+
+}
+
+
+</script>
