@@ -1,0 +1,118 @@
+<!-- div that I will use for idividual slider boxes-->
+<!DOCTYPE html>
+<html>
+<body id="body">
+    <div id = "container">
+        <div class ="InputBox">
+            <div class ="InputBoxHeader">
+                <h2>Inputed Name</h2>
+            </div>
+            <div class ="Inputs">
+                <input type ="text" class = "InputCost">
+                <span>x $</span>
+                <input type ="text" class = "InputQuantity">
+                <span>=</span> <span class = "SingleOutput"> 5000 </span>
+                <input type ="checkbox" class ="LockButton">
+                <br>
+                <input type = "range" class = "BudgetSlider">
+            </div>
+        </div>
+
+
+        <div id ="hi"></div>
+        <div id = "buttonbox">
+            <button value="Click" onclick="SliderBoxGen()">Click</button>
+        </div>
+    </div>
+
+<script>
+var no =1;
+    // function to generate indivual slider boxes
+
+function SliderBoxGen(){
+    // newInputBox is the root div for the tree
+    const newInputBox = document.createElement("div"); 
+    newInputBox.className ="InputBox"
+   
+    //creates Header Box
+    const newInputBoxHead = document.createElement("div");
+    newInputBoxHead.className ="InputBoxHead";
+    newInputBox.appendChild(newInputBoxHead);  
+   
+    //creates Header h2 
+    const header = document.createElement("h2");
+    header.textContent ="Inputed Name";
+    newInputBoxHead.appendChild(header);
+    
+    
+    //Creates <div class ="Inputs">
+    const newInputs = document.createElement("div");
+    newInputs.className = "Inputs";
+    newInputBox.appendChild(newInputs);
+
+    //Creates <input type ="text" class = "InputCost">
+    const InputCost = document.createElement("input");
+    InputCost.className = "InputCost"
+    InputCost.setAttribute("type","text");
+    newInputs.appendChild(InputCost);
+    
+    //Creates span <span>x $</span>
+    const equalsmoney = document.createElement("span");
+    equalsmoney.textContent ="x $";
+    newInputs.appendChild(equalsmoney);
+
+    //Creates <input type ="text" class = "InputQuantity">
+    const InputQuantity = document.createElement("input");
+    InputQuantity.className = "InputQuantity"
+    InputQuantity.setAttribute("type","text");
+    newInputs.appendChild(InputQuantity); 
+
+    //Creates span <span>x $</span>
+    const equals = document.createElement("span");
+    equals.textContent ="=";
+    newInputs.appendChild(equals);
+    
+    //Creates <span class = "SingleOutput"> 5000 </span>
+    const SingleOutput =document.createElement("span");
+    SingleOutput.className = "SingleOutput";
+    SingleOutput.textContent = "5000"
+    newInputs.appendChild(SingleOutput);
+
+    //create <input type ="checkbox" class ="LockButton">
+    const lockbox = document.createElement("input")
+    lockbox.setAttribute("type","checkbox");
+    lockbox.className ="LockButton";
+    newInputs.appendChild(lockbox);
+
+    //create <br>
+    const pgbrk = document.createElement("br");
+    newInputs.appendChild(pgbrk);
+
+    //creates <input type = "range" class = "BudgetSlider">
+    const BudgetSlider = document.createElement("input");
+    BudgetSlider.setAttribute("type","range");
+    BudgetSlider.className = "BudgetSlider";
+    newInputs.appendChild(BudgetSlider);
+    let test = document.createTextNode("TEST");
+    newInputBox.appendChild(test);
+    let number = document.createTextNode(no);
+    newInputBox.appendChild(number);
+    no++;
+    
+   
+    var newItem = document.createElement("LI");       // Create a <li> node
+    var textnode = document.createTextNode("Water");  // Create a text node
+    newItem.appendChild(textnode); 
+    
+    
+    var buttonbox = document.getElementById("body");
+    
+    
+
+    buttonbox.insertBefore(newInputBox,buttonbox.nextSibling);
+    //document.body.appendChild(newInputBox); 
+    
+}
+</script>
+</body>
+</html>
