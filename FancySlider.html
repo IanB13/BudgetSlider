@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+    div{
+        height: 100%;
+        display: grid;
+        grid-template-rows: repeat(2,50vh);
+        grid-template-columns: repeat(3,1fr)
+    }
+
+    .fancySlider{
+        margin: 0;
+        grid-row: 1;
+        grid-column-start: 2 ;    
+        grid-column-end: 3 ;
+        grid-column: 2,3;
+
+    /*      padding: 200px, 20px;  does nothing so far*/
+/*         -webkit-appearance: none;  /* Override default CSS styles
+        appearance: none; */
+    }
+
+
+</style>
+</head>
+
+
+<body>
+    <div>
+        <input type ="range" class ="fancySlider">
+
+    </div>
+
+
+<script>
+</script>
+</body>
+
+
+</html>
