@@ -1,6 +1,20 @@
 <!-- div that I will use for idividual slider boxes-->
 <!DOCTYPE html>
 <html>
+<head>
+    <Style>
+
+    .LockButton:hover .tooltip{
+        visibility: visible
+
+    }
+    .InputBoxHeader:hover .tooltip{
+        background-color:black;
+
+    }
+    </Style>
+
+</head>
 <body id="body">
     <div id = "container">
         <div class ="InputBox">
@@ -13,13 +27,13 @@
                 <input type ="text" class = "InputQuantity">
                 <span>=</span> <span class = "SingleOutput"> 5000 </span>
                 <input type ="checkbox" class ="LockButton">
+                <div class = "tooltip" > Hello World</div>
                 <br>
                 <input type = "range" class = "BudgetSlider">
             </div>
         </div>
 
 
-        <div id ="hi"></div>
         <div id = "buttonbox">
             <button value="Click" onclick="SliderBoxGen()">Click</button>
         </div>
