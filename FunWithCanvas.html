@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body{
+        margin: 50px;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        
+    }
+
+    #piChart{
+        width: 600px;
+        height: 300px;
+        /*background-color: aqua; */
+        grid-column-start: 2;
+
+    }
+</style>
+
+</head>
+<body onload="drawPiChart(randomArray(3,12))">
+    <canvas id = "piChart" ></canvas>
+    
+
+</body>
+<script>
+    function randomArray(arrayMin,arrayMax){
+    const ranArray = [];
+    const ranLength = Math.round((arrayMax - arrayMin)*Math.random()) +arrayMin
+    console.log( `ranLength is ${ranLength}` )
+    for(let i =0; i < ranLength ; i++){
+     ranArray[i] = Math.round(1000*Math.random())
+    }
+    
+    console.log(ranArray)
+    return ranArray
+    } 
+
+    function drawSquares() {
+      var canvas = document.getElementById('piChart');
+      if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = 'rgb(200, 0, 0)';
+        ctx.fillRect(10, 10, 50, 50);
+
+        ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+        ctx.fillRect(30, 30, 50, 50);
+
+        ctx.fillStyle = 'rgba(0,100,0)'
+        ctx.fillRect(90,140,10,10);
+      
+        ctx.fillStyle = 'rgba(100,0,100,0.3)'
+        ctx.fillRect(0,0,300,150)
+      }
+     
+
+    }
+    function drawpies(){
+        const canvas = document.getElementById('piChart'); 
+
+        
+        const ctx = canvas.getContext('2d');
+        let angle = (Math.PI*2*Math.random());
+
+        ctx.beginPath();
+        ctx.moveTo(50,50);
+        ctx.lineTo(100,50);
+        ctx.arc(50,50,50,0,angle)
+        ctx.lineTo(50,50)
+        ctx.fillStyle = '#'.concat(Math.round(Math.random()*16777215).toString(16)) ;
+        ctx.fill();
+        
+    }
+    
+
+
+    const oldinputs = [14,432,534,654];
+    //takes an array
+    function drawPiChart(chartInputs) {
+        console.log(chartInputs)
+        //draw a half and half 
+        const canvas = document.getElementById('piChart'); 
+
+        if (canvas.getContext) {
+        const ctx = canvas.getContext('2d');
+        
+        let sum =0
+        chartInputs.forEach((element,index) => {
+            sum = sum+element;
+            console.log(element)
+        });
+        console.log(sum)
+        
+        let elemRAD = 0;
+        chartInputs.forEach(element =>{
+            console.log(elemRAD)
+          
+            ctx.beginPath();
+            ctx.moveTo(50,50);
+            ctx.lineTo((50 + 50*Math.cos(elemRAD)),(50+50*Math.sin(elemRAD)));
+            ctx.arc(50,50,50,elemRAD,(elemRAD + (element *2 *Math.PI)/sum));
+            ctx.lineTo(50,50)
+            ctx.fillStyle = '#'.concat(Math.round(Math.random()*16777215).toString(16)) ;
+            console.log(`${elemRAD} to ${((element *2 *Math.PI)/sum)} `)
+            ctx.fill();
+            elemRAD = elemRAD + ((element *2 *Math.PI)/sum) ; 
+        });
+
+
+
+
+        
+        ctx.fillStyle = 'rgba(0,100,0)'
+        ctx.fillRect(90,140,10,10);
+        console.log("hello")
+        }
+      }
+
+</script>
+
+</html>
