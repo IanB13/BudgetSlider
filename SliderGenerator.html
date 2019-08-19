@@ -4,6 +4,7 @@
 <head>
     <Style>
 
+    /* trying to make a tooltip, work in progress */
     .LockButton:hover .tooltip{
         visibility: visible
 
@@ -12,11 +13,35 @@
         background-color:black;
 
     }
+    /* grid view*/
+    #SliderContainer{
+        /* background-color: blueviolet; */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 4fr;
+    }
+    #newsliderbutton{
+        grid-column: 1 / 2;
+    }
+    #deletesliderbutton{
+        grid-column: 2/3;
+    }
+    .InputBox{
+        grid-column: 1/4;
+
+    }
+
+
     </Style>
 
 </head>
-<body id="body">
-    <div id = "container">
+<body>
+    <div id ="SliderContainer">
+        <div id = "newsliderbutton">
+            <button value="Click" onclick="SliderBoxGen()">New</button>
+        </div>
+        <div id = "deletesliderbutton">
+                <button value="Click" onclick="SliderBoxDel()">Delete</button>
+        </div>
         <div class ="InputBox">
             <div class ="InputBoxHeader">
                 <h2>Inputed Name</h2>
@@ -26,28 +51,30 @@
                 <span>x $</span>
                 <input type ="text" class = "InputQuantity">
                 <span>=</span> <span class = "SingleOutput"> 5000 </span>
-                <input type ="checkbox" class ="LockButton">
-                <div class = "tooltip" > Hello World</div>
+                <!--title lock slider is not made w/ buttons-->
+                <input type ="checkbox" class ="LockButton" title="Lock Slider">
+                <div> Hello World</div>
                 <br>
                 <input type = "range" class = "BudgetSlider">
             </div>
         </div>
-
-
-        <div id = "buttonbox">
-            <button value="Click" onclick="SliderBoxGen()">Click</button>
-        </div>
     </div>
 
-<script>
-var no =1;
-    // function to generate indivual slider boxes
+    
 
+<script>
+//for testing, give test number
+var no =1;
+    
+    // function to generate indivual slider boxes
 function SliderBoxGen(){
+  
+    
     // newInputBox is the root div for the tree
     const newInputBox = document.createElement("div"); 
     newInputBox.className ="InputBox"
-   
+    
+
     //creates Header Box
     const newInputBoxHead = document.createElement("div");
     newInputBoxHead.className ="InputBoxHead";
@@ -113,20 +140,18 @@ function SliderBoxGen(){
     newInputBox.appendChild(number);
     no++;
     
-   
-    var newItem = document.createElement("LI");       // Create a <li> node
-    var textnode = document.createTextNode("Water");  // Create a text node
-    newItem.appendChild(textnode); 
-    
-    
-    var buttonbox = document.getElementById("body");
-    
-    
-
-    buttonbox.insertBefore(newInputBox,buttonbox.nextSibling);
-    //document.body.appendChild(newInputBox); 
-    
+    //Adds new slider box to Slider Container
+    const SliderContainer = document.getElementById("SliderContainer");
+    SliderContainer.appendChild(newInputBox);
+    SliderContainer.insertBefore(newInputBox,SliderContainer.lastChild);  
 }
+
+function SliderBoxDel(){
+    const elemlist = document.body.querySelectorAll(".InputBox");
+    //removes last sliderbox
+    elemlist[(elemlist.length-1)].remove()
+}
+
 </script>
 </body>
 </html>
