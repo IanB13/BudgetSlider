@@ -36,20 +36,22 @@
 </head>
 <body>
     <div id ="SliderContainer">
+        
         <div id = "newsliderbutton">
-            <button value="Click" onclick="SliderBoxGen()">New</button>
+            <button value="Click" onclick="newSlider()">New</button>
         </div>
         <div id = "deletesliderbutton">
                 <button value="Click" onclick="SliderBoxDel()">Delete</button>
         </div>
+
         <div class ="InputBox">
             <div class ="InputBoxHeader">
-                <h2>Inputed Name</h2>
+                <h2 class ="sliderHeader">Inputed Name</h2>
             </div>
             <div class ="Inputs">
-                <input type ="text" class = "InputCost">
+                <input type ="text" class = "InputQuantity" >
                 <span>x $</span>
-                <input type ="text" class = "InputQuantity">
+                <input type ="text" class = "InputCost">
                 <span>=</span> <span class = "SingleOutput"> 5000 </span>
                 <!--title lock slider is not made w/ buttons-->
                 <input type ="checkbox" class ="LockButton" title="Lock Slider">
@@ -63,10 +65,43 @@
     
 
 <script>
+let Budget = 6000;
+
+
+
+
 //for testing, give test number
-var no =1;
-    
-    // function to generate indivual slider boxes
+let no =1;
+
+//performs all operations to make new slider box element,
+// will add all needed event listners
+function newSlider(){
+    //creates new slider box
+    SliderBoxGen();
+    //add event listners
+    newEventListners();
+
+}
+
+const sliderOperator =(eventTarget) =>{
+    const sliderList = document.querySelectorAll(".InputQuantity");
+    const slider = sliderList[eventTarget]
+    slider.addEventListener("mouseover", ()=>{slider.style.backgroundColor = "red"
+        console.log(`hello`)    
+    });
+
+}
+
+function newEventListners(){
+    const inputBoxNodeList = document.querySelectorAll(".InputBox");
+    const eventTarget  = inputBoxNodeList.length - 1 ; 
+    console.log(eventTarget)
+    sliderOperator(eventTarget);
+
+}
+
+// function to generate indivual slider boxes
+// eventListners should go away on delete
 function SliderBoxGen(){
   
     
@@ -83,6 +118,7 @@ function SliderBoxGen(){
     //creates Header h2 
     const header = document.createElement("h2");
     header.textContent ="Inputed Name";
+    header.className = "sliderHeader";
     newInputBoxHead.appendChild(header);
     
     
@@ -91,9 +127,9 @@ function SliderBoxGen(){
     newInputs.className = "Inputs";
     newInputBox.appendChild(newInputs);
 
-    //Creates <input type ="text" class = "InputCost">
+    //Creates <input type ="text" class = "InputQuantity">
     const InputCost = document.createElement("input");
-    InputCost.className = "InputCost"
+    InputCost.className = "InputQuantity"
     InputCost.setAttribute("type","text");
     newInputs.appendChild(InputCost);
     
@@ -102,9 +138,9 @@ function SliderBoxGen(){
     equalsmoney.textContent ="x $";
     newInputs.appendChild(equalsmoney);
 
-    //Creates <input type ="text" class = "InputQuantity">
+    //Creates <input type ="text" class = "InputCost">
     const InputQuantity = document.createElement("input");
-    InputQuantity.className = "InputQuantity"
+    InputQuantity.className = "InputCost"
     InputQuantity.setAttribute("type","text");
     newInputs.appendChild(InputQuantity); 
 
@@ -146,6 +182,7 @@ function SliderBoxGen(){
     SliderContainer.insertBefore(newInputBox,SliderContainer.lastChild);  
 }
 
+//Deletes Slider Boxes
 function SliderBoxDel(){
     const elemlist = document.body.querySelectorAll(".InputBox");
     //removes last sliderbox
