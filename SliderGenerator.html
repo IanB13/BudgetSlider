@@ -83,25 +83,43 @@ function newSlider(){
 
 }
 
+ function newEventListners(){
+    const inputBoxNodeList = document.querySelectorAll(".InputBox");
+    const eventTarget  = inputBoxNodeList.length - 1 ; 
+    console.log(eventTarget)
+   // sliderOperator(eventTarget);
+    slideInputEvent(eventTarget);
+
+} 
+
+//mousover event listener
 const sliderOperator =(eventTarget) =>{
     const sliderList = document.querySelectorAll(".InputQuantity");
-    const slider = sliderList[eventTarget]
+    const slider = sliderList[eventTarget];
     slider.addEventListener("mouseover", ()=>{slider.style.backgroundColor = "red"
-        console.log(`hello`)    
+        console.log(`${this} is now red`)    
     });
 
 }
 
-function newEventListners(){
-    const inputBoxNodeList = document.querySelectorAll(".InputBox");
-    const eventTarget  = inputBoxNodeList.length - 1 ; 
-    console.log(eventTarget)
-    sliderOperator(eventTarget);
+//this function changes the input box when the slider changes
+const slideInputEvent = (eventTarget) => { 
+    const sliderList = document.querySelectorAll(".BudgetSlider");
+    const inputList = document.querySelectorAll(".InputQuantity");
+    const slider = sliderList[eventTarget];
+    const input = inputList[eventTarget];
+    slider.addEventListener("change", () => {
+        input.value = slider.value ;
 
+
+
+    });
 }
 
+
+
 // function to generate indivual slider boxes
-// eventListners should go away on delete
+// eventListners should go away on delete -> event listeners go away if target goes away
 function SliderBoxGen(){
   
     
@@ -183,6 +201,7 @@ function SliderBoxGen(){
 }
 
 //Deletes Slider Boxes
+//should look into CHild stuff
 function SliderBoxDel(){
     const elemlist = document.body.querySelectorAll(".InputBox");
     //removes last sliderbox

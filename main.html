@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<head>
+    <title>Budget Sliders</title>
 <style>
     body {
         background-color:lightblue;
@@ -43,13 +45,13 @@
     }
 
 </style>
-
+</head>
 <h1>
     Budget Calculator
 </h1>
 
 <p>
-    This is a test, do not use the results without further verification 
+    Use for estimating budgets with 4 items
 </p>
 <br />
 
@@ -61,7 +63,7 @@
 
 <div>
     <p class="slidercontainer">
-        Broken Arm:&#160$
+        Object 1:&#160$
         <input type="text" , id="BrokenArmCost" value="10" class="cost">
         &#160x&#160
         <input type="text" , id="BrokenArm" class="quantity" disabled>
@@ -73,7 +75,7 @@
 
 
     <p class="slidercontainer">
-        Broken Leg:&#160$
+        Object 2:&#160$
         <input type="text" , id="BrokenLegCost" value="20" class="cost">
         &#160x&#160
         <input type="text" , id="BrokenLeg" class="quantity" disabled>
@@ -85,7 +87,7 @@
 
 
     <p class="slidercontainer">
-        Broken Head:&#160$
+        Object 3:&#160$
         <input type="text" , id="BrokenHeadCost" value="30" class="cost">
         &#160x&#160
         <input type="text" , id="BrokenHead" class="quantity" disabled>
@@ -96,7 +98,7 @@
 
 
     <p class="slidercontainer"> 
-        Mystery Object in Abdomen:&#160
+        Object 4:&#160$
         <input type="text" , id="BrokenButtCost" value="40" class="cost">
         &#160x&#160
         <input type="text" , id="BrokenButt" class="quantity" disabled>
@@ -108,7 +110,7 @@
     <h2 id=sum></h2>
 
 
-    <button onclick="BudgetCalc()">Run</button>
+    <!--<button onclick="BudgetCalc()">Run</button>-->
 
 
 </div>
