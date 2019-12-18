@@ -1,4 +1,7 @@
 #to DO
 Add:
 quantity
-cost
+cost 
+functions to determine, 
+lock function
+lock button

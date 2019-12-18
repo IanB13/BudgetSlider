@@ -5,17 +5,20 @@ const dummylist =[
     id: 0,
     total: 1000,
     cost: 50,
-    quantity: 20
+    quantity: 20,
+    checked: false
   },{
     id: 1,
     total: 1000,
     cost: 50,
-    quantity: 20
+    quantity: 20,
+    checked: false
   },{
     id: 2,
     total: 1000,
     cost: 50,
-    quantity: 20
+    quantity: 20,
+    checked: false
   }
 ]
 
@@ -25,8 +28,7 @@ const App = () => {
   );
 }
 
-const SliderContainer =(props) =>{
-  // eslint-disable-next-line 
+const SliderContainer =() =>{
   const [budget,changeBudget] =useState(3000)
   const [sliders, changeSliders] =useState(dummylist)
   
@@ -46,8 +48,12 @@ const BudgetInput =({budget,changeBudget}) =>{
   }
 
   return(
-    <input onChange = {budgetUpdate} value ={budget} />
-      
+    <h3>
+      Budget:
+        <input onChange = {budgetUpdate} value ={budget} />
+      Total:{}
+      Remainder:{}
+    </h3>
   )
 
 }
@@ -61,16 +67,18 @@ const AddRemoveSlider = ({sliders,changeSliders}) =>{
       id,
       total: 0,
       cost: 0,
-      quantity: 0
+      quantity: 0,
+      checked: false
     }]
     console.log(addedSliderArray)
     changeSliders(addedSliderArray)
-
+    //TODO: Update function
   }
   const RemoveSlider =()=>{
     console.log("remove")
     const removedSliderArray = sliders.slice(0,-1)
    changeSliders(removedSliderArray)
+   //TODO: Update function
 
   }
 return(
@@ -150,6 +158,9 @@ const totalBudget = props.totalBudget;
       id = {sliderId}
       onChange ={handleTotalChange} />
       total
+      <input type="checkbox" 
+      //onChange={}
+      />
   </div>
   )
 }
