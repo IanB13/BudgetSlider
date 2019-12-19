@@ -1,7 +1,6 @@
 #to DO
 Add:
-quantity
-cost 
-functions to determine, 
-lock function
-lock button
+quantity first function
+cost first update function
+maybe do two state updates? 
+Have a changing state?

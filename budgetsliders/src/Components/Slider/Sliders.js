@@ -23,8 +23,9 @@ const Sliders =(props) =>{
 const totalChange = (targetObject,totalBudget,sliderArray,changesliders) =>{
   const {sliderTotal, sliderId} = targetObject
   const locked = numLocked(sliderArray);
-
-  const newAmount = (totalBudget-sliderTotal)/(sliderArray.length-1-locked)
+  const totalLocked = costLocked(sliderArray)
+  console.log(costLocked(sliderArray))
+  const newAmount = (totalBudget-sliderTotal-totalLocked)/(sliderArray.length-1-locked)
   const newArray = sliderArray.map(slider =>{
     if(sliderId === slider.id){
       const changedSlider = {
@@ -52,6 +53,7 @@ const totalChange = (targetObject,totalBudget,sliderArray,changesliders) =>{
   changesliders(newArray)
 } 
 
+
 //finds how many sliders are locked in the array 
 const numLocked =(sliderArray) =>{
   const locked = sliderArray.reduce((acc,curr)=>{
@@ -63,6 +65,21 @@ const numLocked =(sliderArray) =>{
   },0)
   console.log(`locked is ${locked}`)
   return locked;
+}
+
+// finds total cost of locked sliders
+//TODO: needs update for if modifying locked slider
+const costLocked =(sliderArray,targetId) =>{
+
+  const cost = sliderArray.reduce((acc,cur) =>{
+    if(cur.locked){
+     return acc = +cur.total +acc;
+    }
+    console.log(cur.total)
+    return acc
+  },0)
+  console.log(cost)
+  return cost || 0
 }
 
 //Creates the individual sliders, 
@@ -123,6 +140,9 @@ const Slider =(props) =>{
         <div>
           <input value = {sliderArray[sliderId].quantity} 
           type = "range"
+          min = {0}
+          step = {1}
+          max = {totalBudget/sliderArray[sliderId].cost}
           id = {`slider${sliderId}`}
           onChange ={handleQuantityChange}/>
           <input value = {sliderArray[sliderId].quantity} 
@@ -137,8 +157,6 @@ const Slider =(props) =>{
           id = {`total${sliderId}`}
           onChange ={handleTotalChange} />
           total
-          {//should fix lock
-          }
           <input type="checkbox" 
           id = {`lock${sliderId}`}
           onChange={toggleLock}
