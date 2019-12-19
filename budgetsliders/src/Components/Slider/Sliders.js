@@ -83,12 +83,25 @@ const Slider =(props) =>{
 
       //handles quantity changes
       const handleQuantityChange = (event)=>{
-        console.log(event.target)
+        const targetId = +event.target.id.slice(8) //takes "quantity#" string ID and gets integer 
+        const targetObject = {sliderTotal:(event.target.value*sliderArray[targetId].cost ), sliderId: sliderId}
+        totalChange(targetObject,totalBudget,sliderArray,changesliders);
       }
 
 
-      //handles cost changes
-      const handleCostChange = (event)=>{}
+      //handles cost changes, does NOT UPDATE BUDGET
+      const handleCostChange = (event)=>{
+        const targetId = +event.target.id.slice(4) //takes "quantity#" string ID and gets integer 
+       
+        const newArray = sliderArray.map(slider =>{
+            if(slider.id === targetId){
+              return {...sliderArray[targetId],cost:+event.target.value}
+            }
+            else return slider;
+        })
+
+        changesliders(newArray)
+      }
 
       // toggles lock based on sliderID
       const toggleLock =(event) =>{
@@ -109,12 +122,16 @@ const Slider =(props) =>{
       return(
         <div>
           <input value = {sliderArray[sliderId].quantity} 
-            onChange = {handleCostChange}
+          type = "range"
+          id = {`slider${sliderId}`}
+          onChange ={handleQuantityChange}/>
+          <input value = {sliderArray[sliderId].quantity} 
             id = {`quantity${sliderId}`}
-          /> quantity *
-          <input value = {sliderArray[sliderId].cost} 
             onChange ={handleQuantityChange}
+            /> quantity *
+          <input value = {sliderArray[sliderId].cost} 
             id = {`cost${sliderId}`}
+            onChange = {handleCostChange}
           />cost = 
         <input value = {sliderArray[sliderId].total}
           id = {`total${sliderId}`}
