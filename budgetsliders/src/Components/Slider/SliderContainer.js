@@ -31,13 +31,13 @@ const dummylist =[
 const SliderContainer =() =>{
     const [budget,changeBudget] =useState(3000) // should initalize state with cookies
     const [sliders, changeSliders] =useState(dummylist) //
-    const[locknum,changeLocknum] = useState(0)
+
 
     return (
       <div className ="App">
           <BudgetInput budget = {budget} changeBudget = {changeBudget}/>
           <AddRemoveSlider sliders = {sliders} changeSliders = {changeSliders} />
-          <Sliders sliders = {sliders} changesliders = {changeSliders} totalBudget={budget} locknum = {locknum} changeLocknum ={changeLocknum}/>
+          <Sliders sliders = {sliders} changesliders = {changeSliders} totalBudget={budget} />
       </div>
     );
   }

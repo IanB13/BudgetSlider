@@ -4,18 +4,6 @@ const Sliders =(props) =>{
     const sliderArray = props.sliders;
     const changesliders =props.changesliders; 
     const totalBudget =props.totalBudget;
-    const locknum = props.locknum;
-    const changeLockednum = props.changeLockednum;
-
-    console.log(`locknum is ${locknum}`)
-    const sliderLocknum = sliderArray.reduce( (acc, cur) => { 
-      //console.log(acc)
-      //console.log(cur)
-      if(cur.Locked){
-        return 1
-      }
-      return 0}  ,0)
-      console.log(sliderLocknum)
 
       return(
         <div>
@@ -31,8 +19,51 @@ const Sliders =(props) =>{
         </div>
       )
     }
-    
+ //handles changing totals and quantities based on changed slider
+const totalChange = (targetObject,totalBudget,sliderArray,changesliders) =>{
+  const {sliderTotal, sliderId} = targetObject
+  const locked = numLocked(sliderArray);
 
+  const newAmount = (totalBudget-sliderTotal)/(sliderArray.length-1-locked)
+  const newArray = sliderArray.map(slider =>{
+    if(sliderId === slider.id){
+      const changedSlider = {
+        ...slider,
+        total: sliderTotal,
+        quantity: sliderTotal/slider.cost
+      };
+      return changedSlider
+    }
+    else if(slider.locked){
+      const changedSlider = {
+        ...slider,
+      };
+      return changedSlider
+    }
+    else{
+      const changedSlider = {
+        ...slider,
+        total: newAmount,
+        quantity: newAmount/slider.cost
+      };
+      return changedSlider
+    }
+  } )
+  changesliders(newArray)
+} 
+
+//finds how many sliders are locked in the array 
+const numLocked =(sliderArray) =>{
+  const locked = sliderArray.reduce((acc,curr)=>{
+    if(curr.locked){
+      return acc + 1
+    }else{
+      return acc
+    }
+  },0)
+  console.log(`locked is ${locked}`)
+  return locked;
+}
 
 //Creates the individual sliders, 
 const Slider =(props) =>{
@@ -40,46 +71,31 @@ const Slider =(props) =>{
     const sliderArray = props.sliderArray;
     const sliderId = props.sliderId;
     const totalBudget = props.totalBudget; // total Budget
-      const handleTotalChange = (event) => {
+      
+    //Handles total changes
+    const handleTotalChange = (event) => {
+        
+        const targetObject = {sliderTotal:event.target.value , sliderId: sliderId};
+        console.log(targetObject)
+        totalChange(targetObject,totalBudget,sliderArray,changesliders);
 
-        //function that changes values based on the array
-        //get average
-        //TODO: add lock functonality
-        // add lock + figure out functions
-
-        const newAmount = (totalBudget-event.target.value)/(sliderArray.length-1)
-        const newArray = sliderArray.map(slider =>{
-          if(sliderId === slider.id){
-            const changedSlider = {
-              ...slider,
-              total: event.target.value,
-              quantity: event.target.value/slider.cost
-            };
-            return changedSlider
-          }
-          else{
-            const changedSlider = {
-              ...slider,
-              total: newAmount,
-              quantity: newAmount/slider.cost
-            };
-            return changedSlider
-          }
-        } )
-        changesliders(newArray)
       }
 
-      const handleQuantityChange = (event)=>{}
+      //handles quantity changes
+      const handleQuantityChange = (event)=>{
+        console.log(event.target)
+      }
 
+
+      //handles cost changes
       const handleCostChange = (event)=>{}
 
-
+      // toggles lock based on sliderID
       const toggleLock =(event) =>{
-          const id = event.target.id
+          const lockId = event.target.id;
+          const id = +lockId.slice(4)
           const lockArray = sliderArray.map(slider =>{
-            console.log(`id;${id} ${slider.id}`)
-            if(+id === +slider.id){
-              console.log("heello")
+            if(id === +slider.id){
               return( {...slider, locked: !slider.locked})
             }else{
               return({...slider})
@@ -94,19 +110,21 @@ const Slider =(props) =>{
         <div>
           <input value = {sliderArray[sliderId].quantity} 
             onChange = {handleCostChange}
-            id = {sliderId}
+            id = {`quantity${sliderId}`}
           /> quantity *
           <input value = {sliderArray[sliderId].cost} 
             onChange ={handleQuantityChange}
-            id = {sliderId}
+            id = {`cost${sliderId}`}
           />cost = 
         <input value = {sliderArray[sliderId].total}
-          id = {sliderId}
+          id = {`total${sliderId}`}
           onChange ={handleTotalChange} />
           total
+          {//should fix lock
+          }
           <input type="checkbox" 
+          id = {`lock${sliderId}`}
           onChange={toggleLock}
-          id = {sliderId}
           />
       </div>
       )

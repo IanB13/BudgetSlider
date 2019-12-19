@@ -7,9 +7,9 @@ const AddRemoveSlider = ({sliders,changeSliders}) =>{
       const id = sliders.length
       const addedSliderArray = [...sliders,{
         id,
-        total: 0,
-        cost: 0,
-        quantity: 0,
+        total: 100,
+        cost: 10,
+        quantity: 10,
         checked: false
       }]
       console.log(addedSliderArray)
