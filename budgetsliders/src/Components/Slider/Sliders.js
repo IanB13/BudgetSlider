@@ -54,6 +54,42 @@ const totalChange = (targetObject,totalBudget,sliderArray,changesliders) =>{
 } 
 
 
+//working on making changes smoother
+const quantityChange = (targetObject,totalBudget,sliderArray,changesliders) =>{
+  const {sliderQuantity, sliderId} = targetObject
+  const sliderTotal =sliderQuantity*sliderArray[sliderId].cost ;
+  const locked = numLocked(sliderArray);
+  const totalLocked = costLocked(sliderArray)
+  console.log(costLocked(sliderArray))
+  const newAmount = (totalBudget-sliderTotal-totalLocked)/(sliderArray.length-1-locked)
+  const newArray = sliderArray.map(slider =>{
+    if(sliderId === slider.id){
+      const changedSlider = {
+        ...slider,
+        total: sliderTotal,
+        quantity: sliderQuantity
+      };
+      return changedSlider
+    }
+    else if(slider.locked){
+      const changedSlider = {
+        ...slider,
+      };
+      return changedSlider
+    }
+    else{
+      const changedSlider = {
+        ...slider,
+        total: newAmount,
+        quantity: newAmount/slider.cost
+      };
+      return changedSlider
+    }
+  } )
+  changesliders(newArray)
+} 
+
+
 //finds how many sliders are locked in the array 
 const numLocked =(sliderArray) =>{
   const locked = sliderArray.reduce((acc,curr)=>{
@@ -100,9 +136,8 @@ const Slider =(props) =>{
 
       //handles quantity changes
       const handleQuantityChange = (event)=>{
-        const targetId = +event.target.id.slice(8) //takes "quantity#" string ID and gets integer 
-        const targetObject = {sliderTotal:(event.target.value*sliderArray[targetId].cost ), sliderId: sliderId}
-        totalChange(targetObject,totalBudget,sliderArray,changesliders);
+        const targetObject = {sliderQuantity:event.target.value, sliderId: sliderId}
+        quantityChange(targetObject,totalBudget,sliderArray,changesliders);
       }
 
 
