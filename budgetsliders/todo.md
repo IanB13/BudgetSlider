@@ -1,6 +1,5 @@
 #to DO
 Add:
-quantity first function
-cost first update function
-maybe do two state updates? 
-Have a changing state?
+Lock locked sliders or change function
+No negatives
+
